@@ -22,7 +22,7 @@ st.sidebar.caption("Configura tus herramientas astronómicas")
 
 st.sidebar.markdown("---")
 
-# Campo de entrada para la API Key (sin clave expuesta)
+# Campo de entrada para la API Key
 api_key_input = st.sidebar.text_input(
     "🔑 OpenAI API Key",
     type="password",
@@ -85,14 +85,17 @@ with col_analysis:
             # Consulta a OpenAI Vision
             client = OpenAI(api_key=api_key_input)
             
+            # Prompt estructurado en tres partes
             prompt_estelar = (
-                "Actúa como un astrónomo poético y místico. Analiza el dibujo adjunto "
-                "e interpreta qué constelación o figura estelar representa. Describe su significado "
-                "en el universo, dando un tono creativo y fascinante en español."
+                "Actúa como un astrónomo poético, narrador místico y sabio del cosmos. "
+                "Analiza el dibujo adjunto y genera una respuesta estructurada en exactamente 3 secciones usando Markdown:\n\n"
+                "1. **👀 ¿Qué revelan las estrellas?:** Describe muy brevemente (en 1 o 2 frases) qué forma o trazo ves en el dibujo.\n"
+                "2. **🌌 La Leyenda de la Constelación:** Inventa una historia o mito fantástico sobre el origen de esta constelación. Incluye detalles mágicos, qué simboliza en el universo o qué leyenda cuentan los antiguos astrónomos sobre ella.\n"
+                "3. **✨ Un mensaje del Firmamento:** Termina con un mensaje caluroso de felicitación para el autor del dibujo, elogiando su belleza y creatividad con palabras bonitas y emojis alegres."
             )
             
             try:
-                with st.spinner("Leyendo las estrellas... 🔭"):
+                with st.spinner("Leyendo las estrellas y descifrando la leyenda... 🔭"):
                     response = client.chat.completions.create(
                         model="gpt-4o-mini",
                         messages=[
@@ -107,12 +110,13 @@ with col_analysis:
                                 ]
                             }
                         ],
-                        max_tokens=500
+                        max_tokens=600
                     )
                     
                     resultado = response.choices[0].message.content
-                    st.success("¡Constelación identificada!")
-                    st.markdown(f"### 🌌 Interpretación:\n{resultado}")
+                    st.success("¡Constelación descifrada!")
+                    st.markdown(resultado)
+                    st.balloons()  # ¡Efecto de globos para celebrar!
                     
             except Exception as e:
                 st.error(f"Error al conectar con el observatorio: {e}")

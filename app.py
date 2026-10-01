@@ -30,10 +30,6 @@ api_key_input = st.sidebar.text_input(
     help="Ingresa tu API Key para activar la interpretación con IA."
 )
 
-# Sugerencia sutil debajo del campo
-st.sidebar.caption("👇 Copia y pega esta clave de prueba arriba:")
-st.sidebar.code("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", language="text")
-
 st.sidebar.markdown("---")
 st.sidebar.subheader("🎨 Herramientas Astronómicas")
 

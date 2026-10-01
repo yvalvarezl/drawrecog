@@ -22,12 +22,12 @@ st.sidebar.caption("Configura tus herramientas astronómicas")
 
 st.sidebar.markdown("---")
 
-# Campo de entrada para la API Key
+# Campo de entrada para la API Key (sin clave expuesta)
 api_key_input = st.sidebar.text_input(
     "🔑 OpenAI API Key",
     type="password",
-    placeholder="Pega tu clave aquí",
-    help="Ingresa la API Key para activar la interpretación."
+    placeholder="Pega tu clave (sk-...) aquí",
+    help="Ingresa tu API Key para activar la interpretación con IA."
 )
 
 # Sugerencia sutil debajo del campo

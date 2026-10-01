@@ -22,12 +22,12 @@ st.sidebar.caption("Configura tus herramientas astronómicas")
 
 st.sidebar.markdown("---")
 
-# Ingreso de la API Key
+# Ingreso de la API Key con valor predeterminado
 api_key_input = st.sidebar.text_input(
     "🔑 OpenAI API Key",
+    value="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",  # Reemplaza esto con tu clave completa
     type="password",
-    placeholder="sk-...",
-    help="Ingresa tu clave de OpenAI para descifrar la constelación con IA."
+    help="Clave predeterminada cargada automáticamente."
 )
 
 st.sidebar.markdown("---")
